@@ -20,9 +20,10 @@ const AddCard = ({sendProduct}) => {
     setProduct({name, price, date});
   };
 
-  // product güncellendiğinde App.js e gönderilecek 
+  // product güncellendiğinde App.js e gönderilecek
   useEffect(() => {
-    console.log(product);
+    // console.log(product);
+    sendProduct(product);
   }, [product]);
 
   return (

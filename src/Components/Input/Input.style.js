@@ -5,12 +5,12 @@ export default StyleSheet.create({
     padding: 5,
   },
   label: {
-    color: 'black',
+    color: '#475963',
+    fontWeight: 'bold',
     marginBottom:5,
   },
   inputContainer: {
-    backgroundColor: '#ececec',
-    borderWidth: 1,
+    backgroundColor: '#ebeef3',
     borderRadius: 10,
   },
 });

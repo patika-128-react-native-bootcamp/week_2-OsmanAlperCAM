@@ -9,11 +9,10 @@ export default StyleSheet.create({
     },
     name:{
         fontSize:18,
-        fontWeight:'bold',
     },
     price:{
-        color:'#5c6bc0',
-        fontSize:18,
+        color:'#475963',
+        fontSize:22,
         fontWeight:'bold',
 
     },

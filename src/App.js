@@ -6,26 +6,18 @@ import ProductCard from './Components/ProductCard/';
 import AddCard from './Components/AddCard/';
 
 const App = () => {
-  // FlatList için geçici data 
-  const [productList, setProductList] = useState([
-    {
-      name: 'Kalem',
-      price: 10,
-      date: '21.11.2021',
-    },
-    {
-      name: 'Silgi',
-      price: 9,
-      date: '21.11.2021',
-    },
-    {
-      name: 'Çanta',
-      price: 50,
-      date: '21.11.2021',
-    },
-  ]);
 
-  // FlatList Componenti Render Metodu 
+  const [productList, setProductList] = useState([]);
+
+  // AddCard tan Gelen Veriyi al
+  const getProductFromCard = product => {
+    if(product.name === undefined || product.price === undefined){
+      return;
+    }
+    setProductList([...productList, product]);
+  };
+
+  // FlatList Componenti Render Metodu
   const renderProduct = ({item}) => {
     return <ProductCard name={item.name} price={item.price} />;
   };
@@ -38,7 +30,7 @@ const App = () => {
         <SelectButton title="Tarih" />
       </View>
       <FlatList data={productList} renderItem={renderProduct} />
-      <AddCard/>
+      <AddCard sendProduct={getProductFromCard} />
     </View>
   );
 };

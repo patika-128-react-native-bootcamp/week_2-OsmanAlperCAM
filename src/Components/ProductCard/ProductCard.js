@@ -6,7 +6,7 @@ const ProductCard = ({name,price}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name} >{name}</Text>
-      <Text style={styles.price}>{price}</Text>
+      <Text style={styles.price}>{price} TL</Text>
     </View>
   );
 };

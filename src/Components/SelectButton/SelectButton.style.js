@@ -2,27 +2,26 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#ECECEC',
+    backgroundColor: '#d2d7db',
     margin: 5,
     padding: 5,
     borderWidth: 1,
     borderRadius: 10,
+    justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
+    fontSize: 15,
+    color: '#889398',
   },
   selected_container: {
-    backgroundColor: '#5c6bc0',
+    backgroundColor: '#475963',
     margin: 5,
     padding: 5,
     borderWidth: 1,
     borderRadius: 5,
   },
   selected_title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 15,
     color: 'white',
   },
 });
