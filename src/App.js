@@ -3,8 +3,7 @@ import {View, FlatList} from 'react-native';
 import styles from './App.style.js';
 import SelectButton from './Components/SelectButton/';
 import ProductCard from './Components/ProductCard/';
-import Input from './Components/Input/';
-import Button from './Components/Button/';
+import AddCard from './Components/AddCard/';
 
 const App = () => {
   // FlatList için geçici data 
@@ -39,9 +38,7 @@ const App = () => {
         <SelectButton title="Tarih" />
       </View>
       <FlatList data={productList} renderItem={renderProduct} />
-      <Input label='Ürün Adı' placeholder='Ürün Adını Girin'/>
-      <Input label='Ürün Fiyatı' placeholder='Ürün Fiyatı'/>
-      <Button title='Ekle...' onPress={()=>console.log('Ekle Butonu')}/>
+      <AddCard/>
     </View>
   );
 };
