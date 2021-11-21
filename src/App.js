@@ -3,9 +3,10 @@ import {View, FlatList} from 'react-native';
 import styles from './App.style.js';
 import SelectButton from './Components/SelectButton/';
 import ProductCard from './Components/ProductCard/';
+import Input from './Components/Input/';
 
 const App = () => {
-  // FlatList için geçici data Ekrana Basmak için Geçici liste
+  // FlatList için geçici data 
   const [productList, setProductList] = useState([
     {
       name: 'Kalem',
@@ -23,6 +24,7 @@ const App = () => {
       date: '21.11.2021',
     },
   ]);
+
   // FlatList Componenti Render Metodu 
   const renderProduct = ({item}) => {
     return <ProductCard name={item.name} price={item.price} />;
@@ -36,7 +38,8 @@ const App = () => {
         <SelectButton title="Tarih" />
       </View>
       <FlatList data={productList} renderItem={renderProduct} />
-      <ProductCard name="Kalem" price="10" />
+      <Input label='Ürün Adı' placeholder='Ürün Adını Girin'/>
+      <Input label='Ürün Fiyatı' placeholder='Ürün Fiyatı'/>
     </View>
   );
 };
