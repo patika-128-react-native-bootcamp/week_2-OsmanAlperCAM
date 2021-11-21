@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styles from './SelectButton.style';
 
-const SelectButton = ({title}) => {
-    // Butonun Seçili Olup Olmadığı Burada Tutuluyor
+const SelectButton = ({title,sendTitle}) => {
+  // Butonun Seçili Olup Olmadığı Burada Tutuluyor
   const [isSelected, setIsSelected] = useState(false);
-  
-  const onPress = ()=>{
-    setIsSelected(!isSelected);
-  }
+  const onPress = () => {
+    sendTitle(title);
+  };
   return (
     <TouchableOpacity
       style={isSelected ? styles.selected_container : styles.container}
