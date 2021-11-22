@@ -18,27 +18,34 @@ const AddCard = ({sendProduct}) => {
     const date = new Date();
     // name, price , date değerlerinin product nesnesine atanması
     setProduct({name, price, date});
+
   };
 
   // product güncellendiğinde App.js e gönderilecek
   useEffect(() => {
-    // console.log(product);
     sendProduct(product);
+    setName('');
+    setPrice('');
   }, [product]);
 
   return (
     <View style={styles.container}>
       <Input
-        label="Ürün Adı"
-        placeholder="Ürün Adını Girin"
+        label="Name"
+        placeholder="Product Name..."
         sendText={text => setName(text)}
+        textValue={name}
+        keyboardType="default"
       />
       <Input
-        label="Ürün Fiyatı"
-        placeholder="Ürün Fiyatı"
+        label="Price"
+        placeholder="Product Price..."
         sendText={text => setPrice(text)}
+        textValue={price.toString()}
+        keyboardType="decimal-pad"
+
       />
-      <Button title="Ekle..." onPress={onButtonPress} />
+      <Button title="ADD" onPress={onButtonPress} />
     </View>
   );
 };

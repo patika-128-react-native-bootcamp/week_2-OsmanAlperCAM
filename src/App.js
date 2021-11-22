@@ -1,42 +1,67 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import styles from './App.style.js';
 import SelectButton from './Components/SelectButton/';
 import ProductCard from './Components/ProductCard/';
 import AddCard from './Components/AddCard/';
+import Divider from './Components/Divider/';
 
 const App = () => {
   const [productList, setProductList] = useState([]);
 
+  // Butonun Seçili Olup Olmadığı selectedButtonTitle Değerine Göre Belirleniyor
+  const [selectedButtonTitle, setSelectedButtonTitle] = useState('Tarih');
+
   // AddCard tan Gelen Veriyi al
   const getProductFromCard = product => {
-    if (product.name === undefined || product.price === undefined) {
+    if (
+      product.name === undefined ||
+      product.price === undefined ||
+      product.price == 0
+    ) {
       return;
     }
-    setProductList([...productList, product]);
+    if (selectedButtonTitle === 'Artan Fiyat') {
+      setProductList(
+        [...productList, product].sort((a, b) => a.price - b.price),
+      );
+    }
+    if (selectedButtonTitle === 'Azalan Fiyat') {
+      setProductList(
+        [...productList, product].sort((a, b) => b.price - a.price),
+      );
+    }
+    if (selectedButtonTitle === 'Tarih') {
+      setProductList([...productList, product].sort((a, b) => a.date - b.date));
+    }
   };
 
-  // SelectButonun Başlığına Göre Sıralama İşlemi
+  // SelectButonun Başlığına Göre seçili butonu belirleme
   const getTitleFromSelectedButton = title => {
-    if (title === 'Artan Fiyat') {
+    setSelectedButtonTitle(title);
+  };
+
+  // selectButonun seçili olduğu duruma göre sıralama
+  useEffect(() => {
+    if (selectedButtonTitle === 'Artan Fiyat') {
       setProductList([...productList].sort((a, b) => a.price - b.price));
     }
-    if (title === 'Azalan Fiyat') {
-      setProductList(
-        [...productList].sort((a, b) => a.price - b.price).reverse(),
-      );
+    if (selectedButtonTitle === 'Azalan Fiyat') {
+      setProductList([...productList].sort((a, b) => b.price - a.price));
     }
-    if (title === 'Tarih') {
-      setProductList(
-        [...productList].sort((a, b) => b.date - a.date).reverse(),
-      );
+    if (selectedButtonTitle === 'Tarih') {
+      setProductList([...productList].sort((a, b) => a.date - b.date));
     }
-  };
+  }, [selectedButtonTitle]);
 
-  // FlatList Componenti Render Metodu
+  // FlatList Render Metodu
   const renderProduct = ({item}) => {
     return <ProductCard name={item.name} price={item.price} />;
-  };
+  }
+
+  const itemSeparator = ()=>{
+    return(<Divider/>)
+  }
 
   return (
     <View style={styles.container}>
@@ -44,14 +69,21 @@ const App = () => {
         <SelectButton
           title="Artan Fiyat"
           sendTitle={getTitleFromSelectedButton}
+          isSelected={selectedButtonTitle === 'Artan Fiyat'}
         />
         <SelectButton
           title="Azalan Fiyat"
           sendTitle={getTitleFromSelectedButton}
+          isSelected={selectedButtonTitle === 'Azalan Fiyat'}
         />
-        <SelectButton title="Tarih" sendTitle={getTitleFromSelectedButton} />
+        <SelectButton
+          title="Tarih"
+          sendTitle={getTitleFromSelectedButton}
+          isSelected={selectedButtonTitle === 'Tarih'}
+        />
       </View>
-      <FlatList data={productList} renderItem={renderProduct} />
+      <FlatList data={productList} renderItem={renderProduct} ItemSeparatorComponent={itemSeparator} />
+      <Divider/>
       <AddCard sendProduct={getProductFromCard} />
     </View>
   );
