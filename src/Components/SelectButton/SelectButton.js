@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styles from './SelectButton.style';
 
 const SelectButton = ({title,sendTitle,isSelected}) => {
-  // Butonun Seçili Olup Olmadığı Burada Tutuluyor
-  // const [isSelected, setIsSelected] = useState(false);
+
   const onPress = () => {
+    // App js e butonun başlığı gönderiliyor
     sendTitle(title);
   };
   return (
