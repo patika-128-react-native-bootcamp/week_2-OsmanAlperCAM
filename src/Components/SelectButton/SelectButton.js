@@ -5,7 +5,6 @@ import styles from './SelectButton.style';
 const SelectButton = ({title,sendTitle,isSelected}) => {
 
   const onPress = () => {
-    // App js e butonun başlığı gönderiliyor
     sendTitle(title);
   };
   return (
