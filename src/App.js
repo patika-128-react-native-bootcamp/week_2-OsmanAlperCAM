@@ -7,15 +7,15 @@ import AddCard from './Components/AddCard/';
 import Divider from './Components/Divider/';
 
 const App = () => {
-  // ürünlerin tutulduğu liste
+ 
   const [productList, setProductList] = useState([]);
 
-  // Butonun Seçili Olup Olmadığı selectedButtonTitle Değerine Göre Belirleniyor
+  
   const [selectedButtonTitle, setSelectedButtonTitle] = useState('Tarih');
 
-  // AddCard tan Gelen Veriyi al
-  const getProductFromCard = product => {
-    // Değerler undefined yada 0 ise işlem yapma
+ 
+  const getProductFromAddCard = product => {
+    
     if (
       product.name === undefined ||
       product.price === undefined ||
@@ -24,7 +24,7 @@ const App = () => {
       return;
     }
 
-    // Seçili butona göre listeye ekleme yap ve sırala
+    // productListe Ekleme Yap ve SelectButonun Balığına Göre Sırala
     if (selectedButtonTitle === 'Artan Fiyat') {
       setProductList(
         [...productList, product].sort((a, b) => a.price - b.price),
@@ -40,12 +40,12 @@ const App = () => {
     }
   };
 
-  // SelectButonun Başlığına Göre seçili butonu belirleme
+  
   const getTitleFromSelectedButton = title => {
     setSelectedButtonTitle(title);
   };
 
-  // selectButonun seçili olduğu duruma göre sıralama
+  // SelectButonun Başlığına Göre Sıralama
   useEffect(() => {
     if (selectedButtonTitle === 'Artan Fiyat') {
       setProductList([...productList].sort((a, b) => a.price - b.price));
@@ -93,7 +93,7 @@ const App = () => {
         ItemSeparatorComponent={itemSeparator}
       />
       <Divider />
-      <AddCard sendProduct={getProductFromCard} />
+      <AddCard sendProduct={getProductFromAddCard} />
     </View>
   );
 };

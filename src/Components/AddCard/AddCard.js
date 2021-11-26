@@ -8,7 +8,6 @@ const AddCard = ({sendProduct}) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
 
-  // App.js e Gönderilecek nesne
   const [product, setProduct] = useState({});
 
   const onButtonPress = () => {
@@ -16,12 +15,10 @@ const AddCard = ({sendProduct}) => {
       return;
     }
     const date = new Date();
-    // name, price , date değerlerinin product nesnesine atanması
     setProduct({name, price, date});
 
   };
 
-  // product güncellendiğinde App.js e gönderilecek
   useEffect(() => {
     sendProduct(product);
     setName('');
